@@ -1,13 +1,16 @@
 package com.alex_acelerator.bitaddress
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
-fun NavigationHost(
+fun NavController(
 
 ) {
     val navController: NavHostController = rememberNavController()
@@ -21,6 +24,7 @@ fun NavigationHost(
             )
         }
         composable(route = "SimpleGenerationPage"){
+            val checked = mutableStateOf(true)
             SimpleGenerationPage(
                 navController
             )
