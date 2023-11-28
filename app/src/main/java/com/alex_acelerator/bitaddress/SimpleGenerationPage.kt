@@ -40,72 +40,10 @@ fun SimpleGenerationPage(
 ) {
     Column {
         Spacer(modifier = Modifier.height(24.dp))
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(id = R.string.Address),
-                modifier = Modifier
-                    .height(32.dp)
-                    .width(300.dp)
-                    .padding(8.dp)
-                    .background(color = Color.Gray)
-                    .weight(1f)
-            )
-            Icon(
-                modifier = Modifier
-                    .background(Color.LightGray)
-                    .size(32.dp),
-                imageVector = Icons.Default.Share,
-                contentDescription = null
-            )
+        addressString(id = R.string.Address)
+        addressString(id = R.string.Legacy_Address)
+        addressString(id = R.string.PublicKey)
 
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Row(  modifier = Modifier
-            .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(id = R.string.Legacy_Address),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(32.dp)
-                    .padding(8.dp)
-                    .background(color = Color.Gray)
-                    .weight(1f)
-            )
-            Icon(
-                modifier = Modifier
-                    .background(Color.LightGray)
-                    .size(32.dp),
-                imageVector = Icons.Default.Share,
-                contentDescription = null
-            )
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Row( modifier = Modifier
-            .fillMaxWidth()
-        ) {
-            Text(
-                text = stringResource(id = R.string.PublicKey),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(32.dp)
-                    .padding(8.dp)
-                    .background(color = Color.Gray)
-                    .weight(1f)
-            )
-            Icon(
-                modifier = Modifier
-                    .background(Color.LightGray)
-                    .size(32.dp),
-                imageVector = Icons.Default.Share,
-                contentDescription = null
-            )
-        }
         Spacer(modifier = Modifier.height(16.dp))
 
         var privateKey by remember { mutableStateOf("Some PrivateKey") }
@@ -143,11 +81,39 @@ fun SimpleGenerationPage(
 
 }
 
+@Composable
+fun addressString(id: Int){
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) {
+        Text(
+            text = stringResource(id = id),
+            modifier = Modifier
+                .height(32.dp)
+                .width(300.dp)
+                .padding(8.dp)
+                .background(color = Color.Gray)
+                .weight(1f)
+        )
+        Icon(
+            modifier = Modifier
+                .background(Color.LightGray)
+                .size(32.dp),
+            imageVector = Icons.Default.Share,
+            contentDescription = null
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun SimpleGenerationPagePreview() {
     SimpleGenerationPage(navController = rememberNavController())
 }
+
+
 
 
 
