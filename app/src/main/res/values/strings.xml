@@ -3,7 +3,8 @@
     <string name="Legacy_Address">Legacy Address</string>
     <string name="Address">Address</string>
     <string name="PublicKey">PublicKey</string>
-    <string name="Memo_PrivateKey">You can enter a private to string above or click the "Generate new!" button</string>
-    <string name="Button_Text">Generate new!</string>
+    <string name="Memo_PrivateKey">You can enter a private key to string above or click the "Generate new"  button</string>
+    <string name="Button_Text">Generate new</string>
+    <string name="Memo_Warning">WARNING!!! DO NOT SHARE THIS WITH ANYONE</string>
     <string name="SimpleGenerationPage">SimpleGenerationPage</string>
 </resources>

@@ -60,7 +60,7 @@ fun MainPage(
                     checked = checkedState, onCheckedChange = { checkedState = it },
                     modifier = Modifier.size(48.dp)
                 )
-                Text(text = "Advansed address creation", modifier = Modifier.align(CenterVertically))
+                Text(text = "Advanced address creation", modifier = Modifier.align(CenterVertically))
             }
 
         }
