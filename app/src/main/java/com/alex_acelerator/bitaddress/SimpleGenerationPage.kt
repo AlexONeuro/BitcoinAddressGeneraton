@@ -33,8 +33,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.alex_acelerator.bitaddress.EntropySource.EntropyGenerator
 import com.alex_acelerator.bitaddress.QRCode.QRGContents
 import com.alex_acelerator.bitaddress.QRCode.QRGEncoder
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnrememberedMutableState")
@@ -42,6 +44,9 @@ import com.alex_acelerator.bitaddress.QRCode.QRGEncoder
 fun SimpleGenerationPage(
     navController: NavController
 ) {
+
+    var privateKeyString by remember { mutableStateOf(EntropyGenerator().entropy) }
+
     Column {
         Spacer(modifier = Modifier.height(24.dp))
         addressString(id = R.string.Address)
@@ -50,7 +55,7 @@ fun SimpleGenerationPage(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        var privateKeyString by remember { mutableStateOf("Some PrivateKey") }
+
         OutlinedTextField(
             value = privateKeyString, onValueChange = { privateKeyString = it }, modifier = Modifier
                 .fillMaxWidth()
@@ -74,7 +79,9 @@ fun SimpleGenerationPage(
         )
         Spacer(modifier = Modifier.height(96.dp))
         Button(
-            onClick = { /*TODO*/ }, modifier = Modifier
+            onClick = {
+                     privateKeyString =  EntropyGenerator().entropy
+                      }, modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         ) {
             Text(text = stringResource(id = R.string.Button_Text))
