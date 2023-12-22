@@ -16,7 +16,7 @@ public final class SHA256 {
     static Word h6 = new Word(0x1f83d9abL);
     static Word h7 = new Word(0x5be0cd19L);
 
-    public static String getHash(byte[] bytes) {
+    public static String getSHA256Hash(byte[] bytes) {
 
         StringBuilder resultHash = new StringBuilder();
         StringBuilder temptHash;
@@ -71,7 +71,9 @@ public final class SHA256 {
 
         StringBuilder bigEndian = new StringBuilder();
         appendLength = 64 - Integer.toBinaryString(initialLength).length();
-        bigEndian.append("0".repeat(appendLength));
+        for (int i = 0; i < appendLength; i++) {
+            bigEndian.append("0");
+        }
         bigEndian.append(Integer.toBinaryString(initialLength));
         str.append(bigEndian);
 
@@ -180,8 +182,8 @@ public final class SHA256 {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         String s = "042ac571520643b585beb6bdd7ce7ae8fea8566face743f2fb991ae0e9a055f3987bd40caf1f3bb7f88bd1d522b2244b7caba80d018c02de819a25ea7e99309a4";
 
-        System.out.println(getHash(hexToBytes(s)));
-        System.out.println(getHash(s.getBytes()));
+        System.out.println(getSHA256Hash(hexToBytes(s)));
+        System.out.println(getSHA256Hash(s.getBytes()));
         System.out.println("ac8a9fa3c12b209ee321e5e39f37a803da619b55ff4ca5b44bd3214b8ac167c7");
 
     }

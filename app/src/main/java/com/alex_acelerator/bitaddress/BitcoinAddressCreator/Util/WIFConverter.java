@@ -6,7 +6,7 @@ import static com.alex_acelerator.bitaddress.BitcoinAddressCreator.Util.BytesToS
 public final class WIFConverter {
     public static String keyToWIF(String privateKey){
         String WIF = "80" + privateKey;
-        String checksum = SHA256.getHash(hexToBytes(SHA256.getHash(hexToBytes(WIF)))).substring(0,8);
+        String checksum = SHA256.getSHA256Hash(hexToBytes(SHA256.getSHA256Hash(hexToBytes(WIF)))).substring(0,8);
         WIF += checksum;
         return Base58.encode(hexToBytes(WIF));
     }

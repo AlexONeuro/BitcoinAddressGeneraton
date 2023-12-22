@@ -12,7 +12,7 @@ import java.math.BigInteger;
 public final class BitcoinAddressGenerator {
 
     public static String generatePrivateKey(String seed) {
-        return SHA256.getHash(seed.getBytes());
+        return SHA256.getSHA256Hash(seed.getBytes());
     }
 
     public static String getPublicKey(String privateKey) throws Exception {
@@ -33,22 +33,24 @@ public final class BitcoinAddressGenerator {
         publicKey = parityByte + publicKey.substring(2, 66);
         return publicKey;
     }
-    public static String getBitcoinAddress(String publicKey){
 
-        String encryptedKey = "00" + Ripemd160.getHash(hexToBytes(SHA256.getHash(hexToBytes(publicKey))));
-        String checksum = SHA256.getHash(hexToBytes(SHA256.getHash(hexToBytes(encryptedKey)))).substring(0, 8);
+    public static String getBitcoinAddress(String publicKey) {
+
+        String encryptedKey = "00" + Ripemd160.getHash(hexToBytes(SHA256.getSHA256Hash(hexToBytes(publicKey))));
+        String checksum = SHA256.getSHA256Hash(hexToBytes(SHA256.getSHA256Hash(hexToBytes(encryptedKey)))).substring(0, 8);
         String bitcoinAddress = encryptedKey + checksum;
         bitcoinAddress = Base58.encode(hexToBytes(bitcoinAddress));
         return bitcoinAddress;
     }
 
     public static void main(String[] args) throws Exception {
-        String seed = "Grenadierfierstherabbitholeintthefield";
+       /* String seed = "Grenadierfierstherabbitholeintthefield";
         String privateKey = generatePrivateKey(seed);
         System.out.println(privateKey);
         System.out.println("PublicKey: " + getPublicKey(privateKey));
         String result = getBitcoinAddress(getPublicKey(privateKey));
         System.out.println(result);
+    }**/
     }
 }
 

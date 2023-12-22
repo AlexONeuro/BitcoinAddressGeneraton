@@ -24,7 +24,7 @@ public final class BIP39Converter {
     public static ArrayList getWordsFromKey(String privateKey){
         ArrayList<String> words = new ArrayList<>();
         String binaryPrivateKey = String.valueOf(convertToBinary(hexToBytes(privateKey)));
-        String checksum = SHA256.getHash(hexToBytes(privateKey)).substring(0,2);
+        String checksum = SHA256.getSHA256Hash(hexToBytes(privateKey)).substring(0,2);
         String binaryChecksum =  Integer.toBinaryString(Integer.parseInt(checksum,16));
         //заменить на String.format?
         binaryChecksum = "00000000".substring(0,8-binaryChecksum.length()) + binaryChecksum;

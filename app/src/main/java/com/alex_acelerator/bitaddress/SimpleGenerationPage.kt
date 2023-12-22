@@ -33,6 +33,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.alex_acelerator.bitaddress.BitcoinAddressCreator.MainGenerators.EntropyGenerator
+import com.alex_acelerator.bitaddress.BitcoinAddressCreator.Util.BitcoinAddressGenerator
 import com.alex_acelerator.bitaddress.QRCode.QRGContents
 import com.alex_acelerator.bitaddress.QRCode.QRGEncoder
 
@@ -43,8 +45,8 @@ import com.alex_acelerator.bitaddress.QRCode.QRGEncoder
 fun SimpleGenerationPage(
     navController: NavController
 ) {
-
-    var privateKeyString by remember { mutableStateOf("EntropyGenerator().entropy") }
+    var entropy = EntropyGenerator().entropy
+    var privateKeyString by remember { mutableStateOf(privateKeyRandom()) }
 
     Column {
         Spacer(modifier = Modifier.height(24.dp))
@@ -79,7 +81,7 @@ fun SimpleGenerationPage(
         Spacer(modifier = Modifier.height(96.dp))
         Button(
             onClick = {
-                     privateKeyString =  "EntropyGenerator().entropy"
+                     privateKeyString =  privateKeyRandom()
                       }, modifier = Modifier
                 .align(Alignment.CenterHorizontally)
         ) {
@@ -122,6 +124,9 @@ fun privateKeyQr(privateKey: String): ImageBitmap {
     qrgEncoder.colorWhite = android.graphics.Color.BLACK
     return qrgEncoder.bitmap.asImageBitmap()
 
+}
+fun privateKeyRandom(): String {
+   return BitcoinAddressGenerator.generatePrivateKey(EntropyGenerator().entropy)
 }
 
 @Preview(showBackground = true)
