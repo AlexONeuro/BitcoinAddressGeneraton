@@ -45,14 +45,15 @@ import com.alex_acelerator.bitaddress.QRCode.QRGEncoder
 fun SimpleGenerationPage(
     navController: NavController
 ) {
-    var entropy = EntropyGenerator().entropy
     var privateKeyString by remember { mutableStateOf(privateKeyRandom()) }
+    var publicKey = BitcoinAddressGenerator.getPublicKey(privateKeyString)
+    var bitcoinAddress = BitcoinAddressGenerator.getBitcoinAddress(publicKey)
 
     Column {
         Spacer(modifier = Modifier.height(24.dp))
-        addressString(id = R.string.Address)
-        addressString(id = R.string.Legacy_Address)
-        addressString(id = R.string.PublicKey)
+        addressString(text = bitcoinAddress)
+        addressString(text = publicKey)
+        addressString(text = privateKeyString)
 
         Spacer(modifier = Modifier.height(16.dp))
 
@@ -92,13 +93,13 @@ fun SimpleGenerationPage(
 }
 
 @Composable
-fun addressString(id: Int) {
+fun addressString(text: String) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
     ) {
         Text(
-            text = stringResource(id = id),
+            text = text,
             modifier = Modifier
                 .height(32.dp)
                 .width(300.dp)

@@ -65,7 +65,7 @@ public class Point {
     }
 
     public void doublePoint(){
-        curve.m = y.multiply(BigInteger.TWO).modInverse(curve.p).multiply(x.pow(2).multiply(BigInteger.valueOf(3)).add(curve.a));
+        curve.m = y.multiply(BigInteger.valueOf(2)).modInverse(curve.p).multiply(x.pow(2).multiply(BigInteger.valueOf(3)).add(curve.a));
 
         BigInteger Px = new BigInteger(String.valueOf(x));
         x = curve.m.pow(2).subtract(x).subtract(Px).mod(curve.p);

@@ -43,7 +43,7 @@ public class BigIntegerPCount {
          * m = 3*x2 / 2*y
          */
         Point result = new Point(P.x,P.y);
-        m = P.y.multiply(BigInteger.TWO).modInverse(p).multiply(P.x.pow(2).multiply(BigInteger.valueOf(3)).add(a));
+        m = P.y.multiply(BigInteger.valueOf(2)).modInverse(p).multiply(P.x.pow(2).multiply(BigInteger.valueOf(3)).add(a));
 
         /**
          * xR = (m2 -xP - xQ) mod 97

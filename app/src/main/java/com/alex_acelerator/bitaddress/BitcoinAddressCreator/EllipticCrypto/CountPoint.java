@@ -26,14 +26,16 @@ public final class CountPoint {
         R.x = result.x;
         R.y = result.y;
         StringBuilder Rx = new StringBuilder();
-        Rx.append("0".repeat(64-R.x.toString(16).length()));
+        for (int i = 0; i < 64-R.x.toString(16).length(); i++) {
+            Rx.append("0");
+        }
         Rx.append(R.x.toString(16));
         StringBuilder Ry = new StringBuilder();
-        Ry.append("0".repeat(64-R.y.toString(16).length()));
+        for (int i = 0; i < 64-R.y.toString(16).length(); i++) {
+            Ry.append("0");
+        }
         Ry.append(R.y.toString(16));
-        StringBuilder resultString = new StringBuilder();
-        resultString.append("04").append(Rx).append(Ry);
-        return resultString.toString();
+        return "04" + Rx + Ry;
     }
 
     public static void main(String[] args) throws Exception {
